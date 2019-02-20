@@ -1,13 +1,9 @@
 ﻿namespace OnBoardingHumanaAPI.Models
 {
-    public class User
+    public class Project
     {
-        public string CognizantID { get; set; }
         public string ProjectID { get; set; }
         public string ProjectDescription { get; set; }
-        public string HumanaID { get; set; }
-
-        public string Url { get; set; }
         public int id { get; set; }
     }
 }

@@ -11,6 +11,8 @@ namespace OnBoardingHumanaAPI
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Project> Projects { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder ModelBuilder)
         {
             //Configure Domain classes using fluent API here.
