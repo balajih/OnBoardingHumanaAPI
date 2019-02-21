@@ -21,24 +21,21 @@ namespace OnBoardingHumanaAPI.Controllers
         {
             this.userRepository = userRepository;
         }
-
-        private User[] users = new User[]
-        {
-        };
+        
 
         // GET api/users
         [Route("")]
         [HttpGet]
         public IEnumerable<User> GetAllUsers()
         {
-            return users;
+            return userRepository.GetUsers();
         }
 
         // GET api/users/5
         [Route("{id:int}")]
         public IHttpActionResult GetUser(int id)
         {
-            var product = users.FirstOrDefault((p) => p.id == id);
+            var product = userRepository.GetUsers().FirstOrDefault((p) => p.id == id);
             if (product == null)
             {
                 return NotFound();
