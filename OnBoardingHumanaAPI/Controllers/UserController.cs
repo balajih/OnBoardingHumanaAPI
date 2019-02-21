@@ -2,12 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using OnBoardingHumanaAPI.DAL;
 
 namespace OnBoardingHumanaAPI.Controllers
 {
     [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
+
+        private IUserRepository userRepository;
+
+        public UserController()
+        {
+            this.userRepository = new UserRepository(new OnBoardingHumanaContext());
+        }
+
+        public UserController(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
+
         private User[] users = new User[]
         {
         };
@@ -33,23 +47,20 @@ namespace OnBoardingHumanaAPI.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult PostUser(UserViewModel user)
+        public IHttpActionResult PostUser(UserViewModel userModel)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid data.");
-
-            using (var ctx = new OnBoardingHumanaContext())
-            {
-                ctx.Users.Add(new User()
+                return BadRequest("Invalid data.");           
+                var user = new User()
                 {
-                    CognizantID = user.CognizantID,
-                    ProjectDescription = user.ProjectDescription,
-                    HumanaID = user.HumanaID,
-                    ProjectID = user.ProjectID
-                });
-
-                ctx.SaveChanges();
-            }
+                    CognizantID = userModel.CognizantID,
+                    ProjectDescription = userModel.ProjectDescription,
+                    HumanaID = userModel.HumanaID,
+                    ProjectID = userModel.ProjectID
+                };
+            
+            userRepository.InsertUser(user);
+            userRepository.Save();
 
             return Ok();
         }
