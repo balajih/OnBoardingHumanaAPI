@@ -23,7 +23,7 @@ namespace OnBoardingHumanaAPI.Controllers
         }
         
 
-        // GET api/users
+        // GET api/projects
         [Route("")]
         [HttpGet]
         public IEnumerable<Project> GetAllProjects()
@@ -31,18 +31,19 @@ namespace OnBoardingHumanaAPI.Controllers
             return projectRepository.GetProjects();
         }
 
-        // GET api/users/5
+        // GET api/projects/5
         [Route("{id:int}")]
         public IHttpActionResult GetProject(int id)
         {
-            var product = projectRepository.GetProjects().FirstOrDefault((p) => p.id == id);
-            if (product == null)
+            var project = projectRepository.GetProjects().FirstOrDefault((p) => p.id == id);
+            if (project == null)
             {
                 return NotFound();
             }
-            return Ok(product);
+            return Ok(project);
         }
 
+        [Route("")]
         [HttpPost]
         public IHttpActionResult PostProject(ProjectViewModel projectModel)
         {

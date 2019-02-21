@@ -43,6 +43,7 @@ namespace OnBoardingHumanaAPI.Controllers
             return Ok(product);
         }
 
+        [Route("")]
         [HttpPost]
         public IHttpActionResult PostUser(UserViewModel userModel)
         {
