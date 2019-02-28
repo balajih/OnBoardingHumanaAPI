@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using OnBoardingHumanaAPI.DAL;
+using OnBoardingHumanaAPI.Common;
 
 namespace OnBoardingHumanaAPI.Controllers
 {
@@ -59,7 +60,7 @@ namespace OnBoardingHumanaAPI.Controllers
             
             userRepository.InsertUser(user);
             userRepository.Save();
-
+            Mail.SendMail("", userModel.CognizantEmailAddress, "", "");
             return Ok();
         }
     }

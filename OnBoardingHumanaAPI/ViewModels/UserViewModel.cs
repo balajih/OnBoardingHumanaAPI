@@ -7,6 +7,8 @@
         public string ProjectDescription { get; set; }
         public string HumanaID { get; set; }
 
+        public string  CognizantEmailAddress { get; set; }
+
         public int id { get; set; }
     }
 }

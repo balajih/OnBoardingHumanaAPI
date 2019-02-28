@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Mail.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="DAL\IProjectRepository.cs" />
     <Compile Include="DAL\IUserRepository.cs" />
